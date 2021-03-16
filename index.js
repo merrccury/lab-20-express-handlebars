@@ -59,5 +59,5 @@ app.post('/delete', (req, res, next) => {
 });
 
 
-const server = app.listen(app.get('port'),
+const server = app.listen(process.env.PORT || app.get('port'),
     () => console.log(`http://localhost:${app.get('port')}/`));
