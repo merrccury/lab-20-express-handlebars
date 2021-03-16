@@ -1,0 +1,16 @@
+<div class="phone-list">
+    {{#if block}}
+        {{#each phones}}
+            {{>button-dis name=name phone=phone}}
+        {{/each}}
+    {{else}}
+        {{#each phones}}
+            {{>button-act name=name phone=phone id=id}}
+        {{/each}}
+    {{/if}}
+
+</div>
+<br>
+<div class="btn-area">
+    <button type="button" onclick="window.location.replace('/add')" class="btn btn-primary">Добавить</button>
+</div>

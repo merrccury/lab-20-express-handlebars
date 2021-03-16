@@ -1,0 +1,48 @@
+<div class="phone-list">
+    {{#if block}}
+        {{#each phones}}
+            {{>button-dis name=name phone=phone}}
+        {{/each}}
+    {{else}}
+        {{#each phones}}
+            {{>button-act name=name phone=phone}}
+        {{/each}}
+    {{/if}}
+
+
+</div>
+<br>
+<form method="post" action="/update">
+    <input type="text" hidden name="id" value="{{old.id}}">
+    <div class="form-group">
+        <label for="fio">ФИО</label>
+        <input type="text" oninput="check(event)"  value="{{old.name}}" class="form-control" id="fio" name="fio" placeholder="ФИО">
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input oninput="check(event)" type="number" value="{{old.phone}}" class="form-control" id="phone" name="phone"
+               placeholder="Номер телефона">
+    </div>
+    <div class="btn-area">
+        <button type="submit" class="btn btn-primary">Изменить</button>
+        <button type="button" onclick='deletePhone({{id}})' id="deleteBtn" class="btn btn-danger">Удалить</button>
+        {{{cancel}}}
+    </div>
+</form>
+
+<script>
+    let check = (e) =>{
+        let del = document.getElementById("deleteBtn");
+        del.disabled = true;
+    }
+    let deletePhone = (id) => {
+        fetch('/delete', {
+            method: 'POST',
+            body: `id=${id}`,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(data => window.location.replace('/'));
+    }
+
+</script>
