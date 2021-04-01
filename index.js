@@ -7,7 +7,7 @@ const hbs = require('express-handlebars').create({
 });
 const Storage = require('./storage');
 const bodyParser = require('body-parser');
-
+const host = 'localhost';
 const app = express();
 
 app.set('port', 20020);
@@ -59,5 +59,5 @@ app.post('/delete', (req, res, next) => {
 });
 
 
-const server = app.listen(process.env.PORT || app.get('port'),
+const server = app.listen(process.env.PORT || app.get('port'), host ,
     () => console.log(`http://localhost:${app.get('port')}/`));
